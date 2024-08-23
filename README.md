@@ -5,68 +5,45 @@
 To Develop a python program to Plot a time series data (population/ market price of a commodity
 /temperature.
 # ALGORITHM:
-1. Import the required packages like pandas and matplot
-2. Read the dataset using the pandas
-3. Calculate the mean for the respective column.
-4. Plot the data according to need and can be altered monthly, or yearly.
-5. Display the graph.
+1. Import pandas for data manipulation and matplotlib.pyplot for plotting.
+2. Read the CSV file using pandas.read_csv().
+3. Convert the 'date' column to a datetime format using pd.to_datetime().
+4. Group the data by 'date' and calculate the average 'money' spent per day using groupby() and mean().
+5. Set up the plot using plt.figure() and specify the figure size.
+6. Use plt.plot() to create a line plot with markers for the average money spent per day.
+7. Use plt.tight_layout() to adjust the layout and plt.show() to display the plot.
+
+
 # PROGRAM:
-## Population:
 
 ```python
-import matplotlib.pyplot as plt
 import pandas as pd
-df=pd.read_csv("POPTHM.csv",parse_dates=["DATE"],index_col="DATE")
-df.head()
-df_filtered = df["2000":"2023"]
-annual_mean = df_filtered.resample('Y').mean()
-mean = annual_mean.plot(kind='line')
-plt.xlabel("Year")
-plt.ylabel("Population (in Thousands)")
-plt.title("Average Annual Population (2000-2023)")
-plt.show()
-```
-# Market Price:
-```python
 import matplotlib.pyplot as plt
-import pandas as pd
-df=pd.read_csv("trainset.csv",parse_dates=["Date"],index_col="Date")
-df.head()
-df.Close.resample('M').mean()
-mean=df.Close.resample('M').mean().plot(kind='line')
-plt.xlabel("Month")
-plt.ylabel("Price")
-plt.show()
-mean=df.Close.resample('Y').mean().plot(kind='line')
-plt.xlabel("Year")
-plt.ylabel("Price")
-plt.show()
-```
-# Temperature:
-```python
-import matplotlib.pyplot as plt
-import pandas as pd
-df=pd.read_csv("DailyDelhiClimateTrain.csv",parse_dates=["date"],index_col="date")
-df.head()
-mean=df["meantemp"].resample('M').mean().plot(kind='line')
-plt.xlabel("Month")
-plt.ylabel("Temperature")
-plt.show()
-```
 
+# Load the data
+data = pd.read_csv('index.csv')
+
+# Convert 'date' to datetime format
+data['date'] = pd.to_datetime(data['date'])
+
+# Group by date and calculate the average money spent per day
+daily_average = data.groupby('date')['money'].mean().reset_index()
+
+# Plotting
+plt.figure(figsize=(14, 7))
+plt.plot(daily_average['date'], daily_average['money'], marker='o', linestyle='-', color='b')
+plt.title('Average Money Spent per Day')
+plt.xlabel('Date')
+plt.ylabel('Average Money')
+plt.xticks(rotation=45)
+plt.grid()
+plt.tight_layout()
+plt.show()
+
+```
 
 # OUTPUT:
-## Population:
-
-![OUT](https://github.com/JEEVAABI/TSA_EXP1/assets/93427098/fade9281-68b0-4f19-93bc-92660324c9dc)
-# Market Price:
-
-![2 (1)](https://github.com/JEEVAABI/TSA_EXP1/assets/93427098/5bccb008-4a74-4afd-b810-224c61675b9c)
-# Temperature:
-
-![4 (1)](https://github.com/JEEVAABI/TSA_EXP1/assets/93427098/dbef86e7-56d2-4d1d-be20-36cd57353f62)
-
-
+![image](https://github.com/user-attachments/assets/462ed2e9-af2e-4c25-ad04-f470fbe0dd8c)
 
 
 
