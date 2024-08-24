@@ -44,6 +44,10 @@ plt.tight_layout()
 plt.show()
 
 ```
+<br>
+<br>
+<br>
+<br>
 
 # OUTPUT:
 ![image](https://github.com/user-attachments/assets/462ed2e9-af2e-4c25-ad04-f470fbe0dd8c)
