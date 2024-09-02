@@ -56,4 +56,4 @@ plt.show()
 
 
 # RESULT:
-Thus we have created the Python code for plotting the time series of given data.
+Thus, the Python code for plotting the time series of coffee sales data had been executed successfully.
