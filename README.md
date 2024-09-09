@@ -5,8 +5,7 @@
 # Ex.No: 01 PLOT A TIME SERIES DATA
 
 # AIM:
-To Develop a python program to Plot a time series data (population/ market price of a commodity
-/temperature.
+To Develop a python program to Plot a time series data (population/ market price of a commodity/temperature).
 # ALGORITHM:
 1. Import pandas for data manipulation and matplotlib.pyplot for plotting.
 2. Read the CSV file using pandas.read_csv().
@@ -24,20 +23,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data
-data = pd.read_csv('coffee_sales.csv')
+data = pd.read_csv('/mnt/data/MLTempDataset.csv')
 
-# Convert 'date' to datetime format
-data['date'] = pd.to_datetime(data['date'])
+# Convert 'Datetime' to datetime format
+data['Datetime'] = pd.to_datetime(data['Datetime'])
 
-# Group by date and calculate the average money spent per day
-daily_average = data.groupby('date')['money'].mean().reset_index()
+# Group by date and calculate the average 'DAYTON_MW' spent per day
+daily_average = data.groupby(data['Datetime'].dt.date)['DAYTON_MW'].mean().reset_index()
 
 # Plotting
 plt.figure(figsize=(14, 7))
-plt.plot(daily_average['date'], daily_average['money'], marker='o', linestyle='-', color='b')
-plt.title('Average Money Spent per Day')
+plt.plot(daily_average['Datetime'], daily_average['DAYTON_MW'], marker='o', linestyle='-', color='b')
+plt.title('Average DAYTON_MW per Day')
 plt.xlabel('Date')
-plt.ylabel('Average Money')
+plt.ylabel('Average DAYTON_MW')
 plt.xticks(rotation=45)
 plt.grid()
 plt.tight_layout()
@@ -50,10 +49,11 @@ plt.show()
 <br>
 
 # OUTPUT:
-![image](https://github.com/user-attachments/assets/462ed2e9-af2e-4c25-ad04-f470fbe0dd8c)
+![image](https://github.com/user-attachments/assets/fba2693e-1ee9-4f2b-bcd8-5754724ebed3)
+
 
 
 
 
 # RESULT:
-Thus, the Python code for plotting the time series of coffee sales data had been executed successfully.
+Thus, the Python code for plotting the time series of room temperature data had been executed successfully.
